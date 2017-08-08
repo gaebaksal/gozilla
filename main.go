@@ -7,6 +7,12 @@ import (
 )
 
 func main() {
-	log.Fatal(http.ListenAndServe(":3000", mux.NewRouter()))
+	router := mux.NewRouter()
+
+	router.HandleFunc("/baba", HandlerBaBa).Methods("GET")
+	log.Fatal(http.ListenAndServe(":3000", router))
 }
 
+func HandlerBaBa(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("yetu"))
+}
